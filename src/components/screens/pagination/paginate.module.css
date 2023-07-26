@@ -1,0 +1,45 @@
+.container {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.list {
+  padding: 5px;
+  &.selected {
+  border-radius: 50%;
+  color: #fff;
+  background-color: #20afff;
+  }
+}
+.links {
+        cursor: pointer;
+        width: 33px;
+        height: 33px;
+        display: flex;
+        color: #333333;
+        font-weight: 900;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        border: 1px solid #20afff;
+        &:hover {
+          color: #fff;
+          background-color: #20afff;
+        }
+}
+
+.active{
+  color: #fff;
+  background-color: #20afff;
+}
+.prev{
+  cursor: pointer;
+}
+.next{
+  cursor: pointer;
+}
+  
+    
+

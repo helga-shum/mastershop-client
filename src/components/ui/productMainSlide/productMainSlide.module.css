@@ -1,0 +1,12 @@
+.productMainSlide {
+  position: fixed;
+  top: 40px;
+  right: 0;
+  width: 918px;
+  z-index: -2;
+  transition: opacity 1.5s ease;
+}
+
+.productMainSlide.hidden {
+  opacity: 0;
+}

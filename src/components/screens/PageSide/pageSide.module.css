@@ -1,0 +1,34 @@
+
+.flex{
+  display: flex;
+  align-items: center;
+}
+.logoName{
+  font-size: 22px;
+  color: #20afff;
+  font-weight: 500px;
+  transition: all 0.3s ease;
+  padding: 10px;
+}
+.pageSide{
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #fff;
+  padding: 15px 10px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+
+
+  overflow-y: scroll;
+
+  }
+
+  .close{
+    margin: 10px;
+  }
+  .logoItems{
+    justify-content:space-between
+  }

@@ -1,0 +1,278 @@
+.invalid {
+  outline: 2px solid rgb(255, 85, 122);
+  box-shadow: 0px 0px 8px 2px rgba(255, 85, 122, 0.8);
+}
+
+.valid {
+  outline: 2px solid rgb(133, 204, 252);
+  box-shadow: 0px 0px 8px 2px rgba(133, 204, 252, 0.8);
+}
+
+.panel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.disabled {
+  cursor: default;
+  opacity: 30%;
+}
+
+.theadBlock {
+  padding-right: 100px;
+}
+
+.thead {
+  display: flex;
+  align-items: flex-start;
+}
+
+input,
+select,
+.thead h4 {
+  margin-left: 30px;
+}
+
+select {
+  padding: 6px;
+  border: 2px solid black;
+  border-radius: 15px;
+  width: 170px;
+}
+
+.thead h4 {
+  width: 170px;
+  margin-bottom: 10px;
+}
+
+.errorMessage {
+  padding-top: 5px;
+  margin-left: 30px;
+  color: rgb(255, 114, 145);
+}
+
+.inline {
+  display: inline-block;
+}
+.inlineSlyle {
+  display:block;
+}
+.checkbox{
+  display: flex;
+}
+.main{
+  display: block;
+
+}
+
+
+  .wrapper *,
+  .wrapper *:after,
+  .wrapper *:before {
+    box-sizing: border-box;
+  }
+
+  .wrapper .cbInput {
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(100%);
+            clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  .wrapper .cbInput:checked + .cbTitle {
+    border-color: #2260ff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    color: #2260ff;
+  }
+  .wrapper .cbInput:checked + .cbTitle:before {
+    transform: scale(1);
+    opacity: 1;
+    background-color: #2260ff;
+    border-color: #2260ff;
+  }
+  .wrapper .cbInput:checked + .cbTitle .cbIcon,
+  .wrapper .cbInput:checked + .cbTitle .cbLabel {
+    color: #2260ff;
+  }
+  .wrapper .cbInput:focus + .cbTitle {
+    border-color: #2260ff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #b5c9fc;
+  }
+  .wrapper .cbInput:focus + .cbTitle:before {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .wrapper .cbTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    min-height: 3rem;
+    border-radius: 0.5rem;
+    border: 2px solid #b5bfd9;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.15s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .wrapper .cbTitle:before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #b5bfd9;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 0.25rem;
+    left: 0.25rem;
+    opacity: 0;
+    transform: scale(0);
+    transition: 0.25s ease;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  .wrapper .cbTitle:hover {
+    border-color: #2260ff;
+  }
+  .wrapper .cbTitle:hover:before {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .wrapper .cbIcon {
+    transition: 0.375s ease;
+    color: #494949;
+  }
+
+
+  .wrapper .cbLabel {
+    color: #707070;
+    transition: 0.375s ease;
+    text-align: center;
+  }
+  .sizes{
+    display: flex;
+  }
+
+
+.button {
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+ margin: 10px;
+  will-change: transform;
+}
+
+.button:disabled {
+  pointer-events: none;
+}
+
+.button:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+/* Remove margins and padding from the list */
+.list {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+.list li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+.list li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+.list li:hover {
+  background: #ddd;
+}
+
+/* When clicked on, add a background color and strike out text */
+.list li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+.list li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #e7d1cf;
+  color: white;
+}
+
+
+
+  
