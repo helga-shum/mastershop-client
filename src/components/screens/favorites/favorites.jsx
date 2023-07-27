@@ -7,12 +7,8 @@ import styles from "./favorites.module.css";
 
 import { useSelector } from "react-redux";
 
-
 const Favorites = () => {
-
- 
-
-  const  {entities:favoriteCards}  = useSelector((state)=>state.favorites);
+  const { entities: favoriteCards } = useSelector((state) => state.favorites);
   return (
     <>
       <Heading>

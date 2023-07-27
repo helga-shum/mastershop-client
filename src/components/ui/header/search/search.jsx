@@ -5,26 +5,24 @@ import { useDispatch } from "react-redux";
 import { setSearchValue } from "../../../store/filter";
 
 const Search = () => {
-  const dispatch=useDispatch();
-  const [search, setSearch] = React.useState("")
+  const dispatch = useDispatch();
+  const [search, setSearch] = React.useState("");
   const handleSearch = (event) => {
     const value = event.target.value;
-    console.log(value)
+    console.log(value);
     setSearch(value);
 
-    dispatch(setSearchValue(value))
+    dispatch(setSearchValue(value));
   };
   return (
-
-      <input
-        className={styles.search}
-        type="text"
-        placeholder="Search..."
-        name="search"
-        value={search}
-        onChange={handleSearch}
-      />
-
+    <input
+      className={styles.search}
+      type="text"
+      placeholder="Search..."
+      name="search"
+      value={search}
+      onChange={handleSearch}
+    />
   );
 };
 

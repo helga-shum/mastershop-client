@@ -6,229 +6,205 @@ import SelectField from "../../forms/selectField";
 import PropTypes from "prop-types";
 
 import { useSelector, useDispatch } from "react-redux";
-import {  loadCardsList, updateCard } from "../../../store/cards";
+import { loadCardsList, updateCard } from "../../../store/cards";
 import { nanoid } from "nanoid";
 
 const CardEditForm = ({ cardId, onClose }) => {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadCardsList());
   }, []);
-  const {entities: cards} = useSelector((state)=>state.cards);
-//default values ​​for the product card
-const clearData = {
-  title: "",
-  brand:"",
-  category: 0,
-  fabric:"",
-  sizes:[],
-  price: "",
-  procent:0,
-  description: "",
-  measures: [],
-  imageUrl: [],
-};
-//default values ​​for product slides
-  const clearSlide={
-    value:'',
-    list:[]
-  }
-  const clearMeasures={
-
-      name:'',
-    type:''
-   
-   
-}
+  const { entities: cards } = useSelector((state) => state.cards);
+  //default values ​​for the product card
+  const clearData = {
+    title: "",
+    brand: "",
+    category: 0,
+    fabric: "",
+    sizes: [],
+    price: "",
+    procent: 0,
+    description: "",
+    measures: [],
+    imageUrl: [],
+  };
+  //default values ​​for product slides
+  const clearSlide = {
+    value: "",
+    list: [],
+  };
+  const clearMeasures = {
+    name: "",
+    type: "",
+  };
 
   const [data, setData] = useState(() => {
     const card = cards.find((card) => card._id === cardId);
     return card ? card : clearData;
   });
 
-   const [slides, setSlides] = useState(() => {
+  const [slides, setSlides] = useState(() => {
     const card = cards.find((card) => card._id === cardId);
-    return card ? {value:'', list:card.imageUrl} : clearSlide;
+    return card ? { value: "", list: card.imageUrl } : clearSlide;
   });
   const [measures, setMeasures] = useState(clearMeasures);
-  console.log(data.sizes)
-// State with list of all checked item
-    const checkList = ["34", "36", "38", "40","42","44","46"];
+  console.log(data.sizes);
+  // State with list of all checked item
+  const checkList = ["34", "36", "38", "40", "42", "44", "46"];
 
-// Add/Remove checked item from list
-    const handleCheck = (event) => {
-   
-     var updatedList = [...data.sizes];
-     if (event.target.checked) {
-       updatedList = [...data.sizes, event.target.value];
-     } else {
-       updatedList.splice(data.sizes.indexOf(event.target.value), 1);
-     }
-     setData((prevState) => ({
-       ...prevState,
-       sizes:updatedList,
-     }));
-   
-   };
+  // Add/Remove checked item from list
+  const handleCheck = (event) => {
+    var updatedList = [...data.sizes];
+    if (event.target.checked) {
+      updatedList = [...data.sizes, event.target.value];
+    } else {
+      updatedList.splice(data.sizes.indexOf(event.target.value), 1);
+    }
+    setData((prevState) => ({
+      ...prevState,
+      sizes: updatedList,
+    }));
+  };
 
-console.log(data)
-console.log(measures)
-console.log(slides)
+  console.log(data);
+  console.log(measures);
+  console.log(slides);
   const [errors, setErrors] = useState({});
-//change product map fields
+  //change product map fields
   const handleChange = (target) => {
     const { name, value, type } = target;
 
     setData((prevState) => ({
-      ...prevState,       
-      [name]: type === "number" ? Number(value) : value
-
+      ...prevState,
+      [name]: type === "number" ? Number(value) : value,
     }));
   };
-//adding product map changes
-const onUpdateItem = (target) => {
-  const { name, value } = target;
-  setSlides(slides => {
-    const list = slides.list.map((item, j) => {
-      if (j === Number(name)) {
-        return value;
-      } else {
-        return item;
-      }
+  //adding product map changes
+  const onUpdateItem = (target) => {
+    const { name, value } = target;
+    setSlides((slides) => {
+      const list = slides.list.map((item, j) => {
+        if (j === Number(name)) {
+          return value;
+        } else {
+          return item;
+        }
+      });
+      setData((prevState) => ({
+        ...prevState,
+        imageUrl: list,
+      }));
+      return {
+        list,
+      };
     });
-    setData((prevState) => ({
-      ...prevState,       
-      imageUrl: list
-
+  };
+  //change slide values
+  const onChangeValue = (target) => {
+    setSlides((prevState) => ({
+      ...prevState,
+      value: target.value,
     }));
-    return {
-      list
-    };
-  });
-};
-//change slide values
-const onChangeValue = (target) => {
-  setSlides((prevState) => ({
-    ...prevState,       
-    value: target.value
-
-  }));
-  
-};
-//add slide
-const onAddItem = () => {
-  setSlides(state => {
-    const list = state.list.concat(state.value);
-    setData((prevState) => ({
-      ...prevState,       
-      imageUrl: list 
-
-    }));
-    return {
-      list,
-      value: '',
-    };
-  });
-};
-//remove the slide
-const onRemoveItem = (i) => {
- 
-  setSlides(state => {
-    const list = state.list.filter((item, j) => i !== j);
-    setData((prevState) => ({
-      ...prevState,       
-      imageUrl: list
-
-    }));
-    return {
-      list,
-      value: '',
-    };
-  });
-};
-const onUpdateMeasureName = (target) => {
-  const { name, value } = target;
-  console.log(data)
+  };
+  //add slide
+  const onAddItem = () => {
+    setSlides((state) => {
+      const list = state.list.concat(state.value);
+      setData((prevState) => ({
+        ...prevState,
+        imageUrl: list,
+      }));
+      return {
+        list,
+        value: "",
+      };
+    });
+  };
+  //remove the slide
+  const onRemoveItem = (i) => {
+    setSlides((state) => {
+      const list = state.list.filter((item, j) => i !== j);
+      setData((prevState) => ({
+        ...prevState,
+        imageUrl: list,
+      }));
+      return {
+        list,
+        value: "",
+      };
+    });
+  };
+  const onUpdateMeasureName = (target) => {
+    const { name, value } = target;
+    console.log(data);
     const list = data.measures.map((item, j) => {
       if (j === Number(name)) {
-        return {...item, name:value};
+        return { ...item, name: value };
       } else {
         return item;
       }
     });
     setData((prevState) => ({
-      ...prevState,       
-      measures: list
-
+      ...prevState,
+      measures: list,
     }));
-    
-};
-const onUpdateMeasureType = (target) => {
-  console.log(data)
-  const { name, value } = target;
-  
-  const list = data.measures.map((item, j) => {
-    if (j === Number(name)) {
-      return {...item, type:value};
-    } else {
-      return item;
-    }
-  });
-  setData((prevState) => ({
-    ...prevState,       
-    measures: list
+  };
+  const onUpdateMeasureType = (target) => {
+    console.log(data);
+    const { name, value } = target;
 
-  }));
-};
-//change slide values
-const onChangeMeasureValue = (target) => {
-
-  const { name, value } = target;
-  console.log(measures)
-  setMeasures((prevState) => ({
-    ...prevState,       
-   [name]: value,
-
-  }));
- 
-  
-};
-//add slide
-const onAddMeasure = () => {
-  //const isValid = validateSlide();
-  //if (!isValid) return;
-  try {
-
-  setMeasures(state => {
+    const list = data.measures.map((item, j) => {
+      if (j === Number(name)) {
+        return { ...item, type: value };
+      } else {
+        return item;
+      }
+    });
     setData((prevState) => ({
-      ...prevState,       
-      measures: [...prevState.measures, state]
-
+      ...prevState,
+      measures: list,
     }));
-    return {
-      name:'',
-      type: '',
-    };
-  });
-} catch (error) {
-  setErrors(error);
-}
-};
-//remove the slide
-const onRemoveMeasure = (i) => {
- 
+  };
+  //change slide values
+  const onChangeMeasureValue = (target) => {
+    const { name, value } = target;
+    console.log(measures);
+    setMeasures((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+  //add slide
+  const onAddMeasure = () => {
+    //const isValid = validateSlide();
+    //if (!isValid) return;
+    try {
+      setMeasures((state) => {
+        setData((prevState) => ({
+          ...prevState,
+          measures: [...prevState.measures, state],
+        }));
+        return {
+          name: "",
+          type: "",
+        };
+      });
+    } catch (error) {
+      setErrors(error);
+    }
+  };
+  //remove the slide
+  const onRemoveMeasure = (i) => {
     const list = data.measures.filter((item, j) => i !== j);
     setData((prevState) => ({
-      ...prevState,       
-      measures: list
-
+      ...prevState,
+      measures: list,
     }));
 
-  console.log(measures)
-  console.log(data)
-};
+    console.log(measures);
+    console.log(data);
+  };
 
   const validatorConfig = {
     title: {
@@ -270,7 +246,7 @@ const onRemoveMeasure = (i) => {
 
   const isValid = Object.keys(errors).length === 0;
 
-//add all changes
+  //add all changes
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid = validate();
@@ -283,7 +259,6 @@ const onRemoveMeasure = (i) => {
     }
   };
 
-
   const categoriesList = [
     { label: "Skirts", value: 1 },
     { label: "Dresses", value: 2 },
@@ -293,7 +268,7 @@ const onRemoveMeasure = (i) => {
     { label: "Tops", value: 6 },
     { label: "Sweaters", value: 7 },
     { label: "Shirts", value: 8 },
-    { label: "Costumes", value: 9 }
+    { label: "Costumes", value: 9 },
   ];
 
   const brandsList = [
@@ -307,14 +282,13 @@ const onRemoveMeasure = (i) => {
     { label: "MORGAN", value: "MORGAN" },
     { label: "PUMA", value: "PUMA" },
     { label: "PINKO", value: "PINKO" },
-    { label: "COLUMBIA", value: "COLUMBIA" }
+    { label: "COLUMBIA", value: "COLUMBIA" },
   ];
 
   const fabricsList = [
     { label: "Polyester", value: "Polyester" },
     { label: "Crepe", value: "Crepe" },
     { label: "Cotton", value: "Cotton" },
-
   ];
 
   return (
@@ -347,7 +321,7 @@ const onRemoveMeasure = (i) => {
             value={data.category}
             error={errors.category}
           />
-           <SelectField
+          <SelectField
             label="Select fabric"
             options={fabricsList}
             name="fabric"
@@ -358,8 +332,13 @@ const onRemoveMeasure = (i) => {
           <div>
             {checkList.map((item, index) => (
               <div key={index}>
-              <input value={item} checked={data.sizes.includes(item)} type="checkbox" onChange={handleCheck} />
-              <span>{item}</span>
+                <input
+                  value={item}
+                  checked={data.sizes.includes(item)}
+                  type="checkbox"
+                  onChange={handleCheck}
+                />
+                <span>{item}</span>
               </div>
             ))}
           </div>
@@ -374,7 +353,7 @@ const onRemoveMeasure = (i) => {
             error={errors.price}
             autoComplete="current-price"
           />
-           <TextField
+          <TextField
             type="number"
             label="Procent"
             name="procent"
@@ -396,89 +375,99 @@ const onRemoveMeasure = (i) => {
           />
           {data.measures.map((_, index) => (
             <>
-            <TextField
-              key={nanoid()}
-              label="Name"
-              name={index}
-              value={data.measures[index].name}
-              error={errors.measures}
-              placeholder="Measure name"
-              onChange={onUpdateMeasureName}
-              autoComplete={`current-image-${index}`}
-            />
-            <TextField
-              key={nanoid()}
-              label="Type"
-              name={index}
-              value={data.measures[index].type}
-              error={errors.measures}
-              placeholder="Measure type"
-              onChange={onUpdateMeasureType}
-              autoComplete={`current-image-${index}`}
-            />
-             <button onClick={() => onRemoveMeasure(index)}>
-              <img
-                src="/icons/actionIcons/delete.svg"
-                alt="delete"
-                className="margin-left: 15px"
+              <TextField
+                key={nanoid()}
+                label="Name"
+                name={index}
+                value={data.measures[index].name}
+                error={errors.measures}
+                placeholder="Measure name"
+                onChange={onUpdateMeasureName}
+                autoComplete={`current-image-${index}`}
               />
-            </button>
+              <TextField
+                key={nanoid()}
+                label="Type"
+                name={index}
+                value={data.measures[index].type}
+                error={errors.measures}
+                placeholder="Measure type"
+                onChange={onUpdateMeasureType}
+                autoComplete={`current-image-${index}`}
+              />
+              <button onClick={() => onRemoveMeasure(index)}>
+                <img
+                  src="/icons/actionIcons/delete.svg"
+                  alt="delete"
+                  className="margin-left: 15px"
+                />
+              </button>
             </>
           ))}
           <TextField
-              label="New masure name"
-              name="name"
-              value={measures.name}
-              error={errors.measures}
-              placeholder="New measure"
-              onChange={onChangeMeasureValue}
-              autoComplete="current-image-new"
-            />
-            <TextField
-              label="New masure type"
-              name="type"
-              value={measures.type}
-              error={errors.measures}
-              placeholder="New measure"
-              onChange={onChangeMeasureValue}
-              autoComplete="current-image-new"
-            />
-          <Button type="button" appearance="ctvBlueSubmit" onClick={onAddMeasure} disabled={true}>
-              Add measure
+            label="New masure name"
+            name="name"
+            value={measures.name}
+            error={errors.measures}
+            placeholder="New measure"
+            onChange={onChangeMeasureValue}
+            autoComplete="current-image-new"
+          />
+          <TextField
+            label="New masure type"
+            name="type"
+            value={measures.type}
+            error={errors.measures}
+            placeholder="New measure"
+            onChange={onChangeMeasureValue}
+            autoComplete="current-image-new"
+          />
+          <Button
+            type="button"
+            appearance="ctvBlueSubmit"
+            onClick={onAddMeasure}
+            disabled={true}
+          >
+            Add measure
           </Button>
           {slides.list.map((_, index) => (
             <>
-            <TextField
-              key={nanoid()}
-              label={`Slide ${index + 1}`}
-              name={index}
-              value={slides.list[index]}
-              error={errors.slides}
-              placeholder={`Slide ${index + 1}`}
-              onChange={onUpdateItem}
-              autoComplete={`current-image-${index}`}
-            />
-             <button onClick={() => onRemoveItem(index)}>
-              <img
-                src="/icons/actionIcons/delete.svg"
-                alt="delete"
-                className="margin-left: 15px"
+              <TextField
+                key={nanoid()}
+                label={`Slide ${index + 1}`}
+                name={index}
+                value={slides.list[index]}
+                error={errors.slides}
+                placeholder={`Slide ${index + 1}`}
+                onChange={onUpdateItem}
+                autoComplete={`current-image-${index}`}
               />
-            </button>
+              <button onClick={() => onRemoveItem(index)}>
+                <img
+                  src="/icons/actionIcons/delete.svg"
+                  alt="delete"
+                  className="margin-left: 15px"
+                />
+              </button>
             </>
           ))}
-            <TextField
-              label="New slide"
-              name="newSlide"
-              value={slides.value}
-              error={errors.slides}
-              placeholder="New slide"
-              onChange={onChangeValue}
-              autoComplete="current-image-new"
-            />
-            <Button type="button" appearance="ctvBlueSubmit" onClick={onAddItem} disabled={true}>
-              Add slide
-            </Button>
+          <TextField
+            label="New slide"
+            name="newSlide"
+            value={slides.value}
+            error={errors.slides}
+            placeholder="New slide"
+            onChange={onChangeValue}
+            autoComplete="current-image-new"
+          />
+          <Button
+            type="button"
+            appearance="ctvBlueSubmit"
+            onClick={onAddItem}
+            disabled={true}
+          >
+            Add slide
+          </Button>
           <div>
             <Button appearance="ctvBlueSubmit" type="submit" disabled={isValid}>
               Confirm

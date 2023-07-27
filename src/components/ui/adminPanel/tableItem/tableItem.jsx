@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./tableItem.module.css";
 import useModal from "../../../utils/hooks/useModal";
 import Modal from "../../modal";
 import PropTypes from "prop-types";
 
 const TableItem = ({ card, slides }) => {
-
   const getSlideIdsByCardId = (slides) => {
     const slideIds = slides.map((slide) => slide.id);
     return slideIds;
   };
   const slidesIds = getSlideIdsByCardId(slides);
-
- 
 
   const { modalVariety, handleModalOpen, handleModalClose, modalOpen } =
     useModal();
@@ -22,7 +19,6 @@ const TableItem = ({ card, slides }) => {
     onClose: handleModalClose,
     slides: slides,
   };
- 
 
   const deleteData = {
     cardId: card._id,
@@ -39,7 +35,7 @@ const TableItem = ({ card, slides }) => {
             <div className={styles.item}>{card.title}</div>
             <div className={styles.item}>{card.category}</div>
             <div className={styles.item}>{card.price}</div>
-            
+
             <button onClick={() => handleModalOpen("editCard")}>
               <img
                 src="/icons/actionIcons/edit.svg"
@@ -56,7 +52,6 @@ const TableItem = ({ card, slides }) => {
             </button>
           </div>
         </div>
-      
       </section>
       {modalOpen && (
         <Modal

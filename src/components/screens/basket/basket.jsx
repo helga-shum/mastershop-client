@@ -11,23 +11,23 @@ import Card from "../home/card";
 import useModal from "../../utils/hooks/useModal";
 import Modal from "../../ui/modal";
 
-
 import { useSelector } from "react-redux";
 
-
 const Basket = () => {
-
-  const { modalVariety, handleModalOpen, handleModalClose, modalOpen } =useModal();
+  const { modalVariety, handleModalOpen, handleModalClose, modalOpen } =
+    useModal();
   const { currentUser } = useAuth();
-  const  {entities:basketCards, totalPrice, totalQuantity}  = useSelector((state)=>state.basket);
- 
+  const {
+    entities: basketCards,
+    totalPrice,
+    totalQuantity,
+  } = useSelector((state) => state.basket);
 
   const orderData = {
     basketCards: basketCards,
     totalQuantity: totalQuantity,
     totalPrice: totalPrice,
     address: currentUser.address,
-    
   };
 
   return (
@@ -48,12 +48,14 @@ const Basket = () => {
           <Line />
           <section>
             <h2>{`Number of goods: ${totalQuantity}  p.`}</h2>
-            <h2 className={styles.total}>{`TOTAL: ${+totalPrice.toFixed(2)} $.`}</h2>
+            <h2 className={styles.total}>{`TOTAL: ${+totalPrice.toFixed(
+              2
+            )} $.`}</h2>
             <Button
               appearance="ctvBlueOrder"
               onClick={() => handleModalOpen("order")}
             >
-             Checkout
+              Checkout
             </Button>
           </section>
         </>

@@ -12,7 +12,6 @@ const TextBlock = ({ title, subtitle, description, authData }) => {
     <div className={styles.textBlock}>
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.subtitle}>{subtitle}</p>
-      
     </div>
   ) : (
     <>

@@ -17,25 +17,26 @@ const Card = ({ card }) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const  {entities:favoriteCards}  = useSelector((state)=>state.favorites);
+  const { entities: favoriteCards } = useSelector((state) => state.favorites);
   const { handleFavoriteClick } = useFavorites();
   const isFavorite = favoriteCards.some((favCard) => favCard._id === card._id);
   const [heartIconclicks, setHeartIconClicks] = useState(isFavorite);
   const handleHeartIconClick = async () => {
     setHeartIconClicks(!heartIconclicks);
     dispatch(changeStatus(card));
-    handleFavoriteClick(card)
+    handleFavoriteClick(card);
   };
 
-  const  {entities:basketCards}  = useSelector((state)=>state.basket);
-  const isBasket = basketCards.some((basketCard) => basketCard.itemId === card._id);
+  const { entities: basketCards } = useSelector((state) => state.basket);
+  const isBasket = basketCards.some(
+    (basketCard) => basketCard.itemId === card._id
+  );
   const [basketIconclicks, setBasketIconClicks] = useState(isBasket);
-  const handleBasketIconClick = async () => { 
-    setBasketIconClicks(!basketIconclicks)
+  const handleBasketIconClick = async () => {
+    setBasketIconClicks(!basketIconclicks);
     dispatch(createBasket(card));
-    console.log("click")
+    console.log("click");
   };
-
 
   return (
     <>
@@ -43,7 +44,6 @@ const Card = ({ card }) => {
         currentPath={currentPath}
         currentUser={currentUser}
         card={card}
-
         isFavorite={isFavorite}
         isBasket={isBasket}
         handleHeartIconClick={handleHeartIconClick}
@@ -53,7 +53,6 @@ const Card = ({ card }) => {
         currentUser={currentUser}
         currentPath={currentPath}
         card={card}
-        
       />
       <OrderItem
         currentUser={currentUser}

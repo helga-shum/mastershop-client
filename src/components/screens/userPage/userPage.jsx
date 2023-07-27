@@ -6,23 +6,17 @@ import styles from "./userPage.module.css";
 import Line from "../../ui/line";
 import TextBlock from "../../ui/textBlock";
 import { useAuth } from "../../utils/hooks/useAuth";
-import Card from "../home/card";
 import { nanoid } from "nanoid";
 import Order from "../order/order";
 import { useSelector } from "react-redux";
 
 const UserPage = () => {
-  
   const { currentUser } = useAuth();
-  const  {orders}  = useSelector((state)=>state.orders);
-console.log(orders)
+  const { orders } = useSelector((state) => state.orders);
+  console.log(orders);
   useEffect(() => {
-   
     window.scrollTo(0, 0);
   }, []);
-
-  
-  
 
   return (
     <>
@@ -38,14 +32,10 @@ console.log(orders)
       <section>
         <h2 className={styles.orderHeading}>Orders</h2>
 
-        {orders?.length === 0 && (
-          <SecondHeading>It's empty here</SecondHeading>
-        )}
-        {orders.map((order)=>(
-              <Order order={order}   key={`${order._id}_${nanoid()}`}/>
+        {orders?.length === 0 && <SecondHeading>It's empty here</SecondHeading>}
+        {orders.map((order) => (
+          <Order order={order} key={`${order._id}_${nanoid()}`} />
         ))}
-        
-          
       </section>
     </>
   );

@@ -36,7 +36,8 @@ const EditUserForm = ({ onClose }) => {
         message: "Phone is required",
       },
       isPhone: {
-        message: "Phone entered incorrectly. For example, (123)-456-7890, 123-456-7890, or 123456-7890.",
+        message:
+          "Phone entered incorrectly. For example, (123)-456-7890, 123-456-7890, or 123456-7890.",
       },
     },
 
@@ -62,7 +63,6 @@ const EditUserForm = ({ onClose }) => {
 
   const isValid = Object.keys(errors).length === 0;
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
@@ -70,7 +70,6 @@ const EditUserForm = ({ onClose }) => {
     try {
       await updateUserData(data);
       onClose();
-
     } catch (error) {
       setErrors(error);
     }

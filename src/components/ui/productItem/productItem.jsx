@@ -23,8 +23,6 @@ const ProductItem = ({
   const maxLength = 35;
   const sku = card._id;
   const maxSkuLength = 15;
-  
-
 
   return (
     <>
@@ -47,12 +45,15 @@ const ProductItem = ({
                     : () => handleModalOpen("signIn")
                 }
                 isActive={isBasket}
-               
               />
             </>
           )}
           <Link to={`/cards/${card._id}`}>
-            <img className={styles.image} src={card.imageUrl[0]} alt="product" />
+            <img
+              className={styles.image}
+              src={card.imageUrl[0]}
+              alt="product"
+            />
           </Link>
           <div>
             <div title={str} className={styles.tooltip}>
@@ -62,14 +63,12 @@ const ProductItem = ({
                   : str}
               </p>
             </div>
-            <p className={styles.description}> 
-              {card.brand}
-            </p>
-            {currentUser?.admin && (
-              <span>{card._id}</span>
-            )}
-            {card.procent>0 && (
-              <h3 className={styles.oldPrice}>{` ${Math.round(card.price+(card.price*(card.procent/100)))} $`}</h3>
+            <p className={styles.description}>{card.brand}</p>
+            {currentUser?.admin && <span>{card._id}</span>}
+            {card.procent > 0 && (
+              <h3 className={styles.oldPrice}>{` ${Math.round(
+                card.price + card.price * (card.procent / 100)
+              )} $`}</h3>
             )}
             <h3>{`Price: ${card.price} $`}</h3>
           </div>
@@ -80,7 +79,6 @@ const ProductItem = ({
           variety={modalVariety}
           isOpen={modalOpen}
           onClose={handleModalClose}
-
         />
       )}
     </>

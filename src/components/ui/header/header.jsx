@@ -6,7 +6,6 @@ import UserPanel from "./userPanel";
 import Authorization from "./authorization";
 import { useNavigate, useLocation } from "react-router-dom";
 
-
 const Header = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();

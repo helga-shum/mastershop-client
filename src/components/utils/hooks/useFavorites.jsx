@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import config from "../../../../config.json";
 import axios from "axios";
 
-
-
 const FavoritesContext = React.createContext();
 export const useFavorites = () => {
   return useContext(FavoritesContext);
@@ -19,8 +17,6 @@ export const httpUser = axios.create({
 export const FavoritesProvider = ({ children }) => {
   const { currentUser, updateUserData } = useAuth();
   const [favoriteCards, setFavoriteCards] = useState([]);
-  
- 
 
   const handleFavoriteClick = async (card) => {
     const favorites = currentUser?.favorites || [];
@@ -43,7 +39,6 @@ export const FavoritesProvider = ({ children }) => {
       });
     }
   };
- 
 
   return (
     <FavoritesContext.Provider

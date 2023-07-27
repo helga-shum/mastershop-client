@@ -5,7 +5,7 @@ const cardsSlice = createSlice({
   name: "cards",
   initialState: {
     entities: [],
-    countPages:0,
+    countPages: 0,
     isLoading: true,
     error: null,
   },
@@ -35,10 +35,8 @@ const cardsSlice = createSlice({
       state.entities[state.entities.findIndex((c) => c.id === cardId)] =
         action.payload;
     },
-    
   },
 });
-
 
 const { reducer: cardsReducer, actions } = cardsSlice;
 const {
@@ -48,7 +46,7 @@ const {
   cardCreated,
   cardDeleted,
   cardUpdateSuccessed,
-  setCountPages
+  setCountPages,
 } = actions;
 
 const addCardRequested = createAction("cards/addCardRequested");
@@ -77,7 +75,7 @@ export const createCard = (payload) => async (dispatch) => {
   }
   try {
     const { content } = await CardsService.getAll();
-    console.log(content)
+    console.log(content);
     dispatch(cardsReceved(content));
   } catch (error) {
     dispatch(cardsRequestFailed(error.message));
@@ -118,34 +116,40 @@ export const updateCard = (cardId, payload) => async (dispatch) => {
   }
 };
 
-export const getCards = ({sizeFilter,
-  minPrice,
-  maxPrice,
-  fabricFilter,
-  brandFilter,
-  sortType,
-  categoryId,
-  currentPage,
-  searchValue}) => async (dispatch) => {
-  dispatch(cardsRequested());
-  console.log(sizeFilter)
-  try {
-    const { content } = await CardsService.getAllFiltered({sizeFilter,
-      minPrice,
-      maxPrice,
-      fabricFilter,
-      brandFilter,
-      sortType,
-      categoryId,
-      currentPage,
-      searchValue});
-    console.log(content)
-    dispatch(cardsReceved(content.list));
-    dispatch(setCountPages(Math.ceil(content.totalPages)));
-  } catch (error) {
-    dispatch(cardsRequestFailed(error.message));
-  }
-};
+export const getCards =
+  ({
+    sizeFilter,
+    minPrice,
+    maxPrice,
+    fabricFilter,
+    brandFilter,
+    sortType,
+    categoryId,
+    currentPage,
+    searchValue,
+  }) =>
+  async (dispatch) => {
+    dispatch(cardsRequested());
+    console.log(sizeFilter);
+    try {
+      const { content } = await CardsService.getAllFiltered({
+        sizeFilter,
+        minPrice,
+        maxPrice,
+        fabricFilter,
+        brandFilter,
+        sortType,
+        categoryId,
+        currentPage,
+        searchValue,
+      });
+      console.log(content);
+      dispatch(cardsReceved(content.list));
+      dispatch(setCountPages(Math.ceil(content.totalPages)));
+    } catch (error) {
+      dispatch(cardsRequestFailed(error.message));
+    }
+  };
 
 export const getCardsLoadingStatus = () => (state) => state.cards.isLoading;
 

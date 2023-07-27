@@ -13,35 +13,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { createBasket } from "../../../store/basket";
 import { changeStatus } from "../../../store/favorites";
 
-const CardItem = ({ slides, card, measures, sizes}) => {
- const dispatch = useDispatch();
+const CardItem = ({ slides, card, measures, sizes }) => {
+  const dispatch = useDispatch();
 
   const { currentUser } = useAuth();
 
   const { modalVariety, handleModalOpen, handleModalClose, modalOpen } =
     useModal();
 
-
-
-console.log(card)
-  const  {entities:favoriteCards}  = useSelector((state)=>state.favorites);
+  console.log(card);
+  const { entities: favoriteCards } = useSelector((state) => state.favorites);
   const { handleFavoriteClick } = useFavorites();
   const isFavorite = favoriteCards.some((favCard) => favCard._id === card._id);
   const [heartIconclicks, setHeartIconClicks] = useState(isFavorite);
   const handleHeartIconClick = async () => {
     setHeartIconClicks(!heartIconclicks);
     dispatch(changeStatus(card));
-    handleFavoriteClick(card)
+    handleFavoriteClick(card);
   };
-  const  {entities:basketCards}  = useSelector((state)=>state.basket);
-  const isBasket = basketCards.some((basketCard) => basketCard.itemId === card._id);
+  const { entities: basketCards } = useSelector((state) => state.basket);
+  const isBasket = basketCards.some(
+    (basketCard) => basketCard.itemId === card._id
+  );
   const [basketIconclicks, setBasketIconClicks] = useState(isBasket);
-  const handleBasketIconClick = async () => { 
-    setBasketIconClicks(!basketIconclicks)
+  const handleBasketIconClick = async () => {
+    setBasketIconClicks(!basketIconclicks);
     dispatch(createBasket(card));
-    console.log("click")
+    console.log("click");
   };
- 
 
   return (
     <>
@@ -59,30 +58,39 @@ console.log(card)
         <div className={styles.item}>
           <div className={styles.characteristics}>
             <h4 className={styles.title}>{card.title}</h4>
-            <p className={styles.title}><b>Brand: </b>{card.brand}</p>
-            <p className={styles.title}><b>Fabric: </b>{card.fabric}</p>
-            <p className={styles.title}><b>Sizes: </b>{sizes.map((size)=>(
-              <p>{size}</p>
-            ))}</p>
-            
-            <h4 className={styles.title}>Measures: 
+            <p className={styles.title}>
+              <b>Brand: </b>
+              {card.brand}
+            </p>
+            <p className={styles.title}>
+              <b>Fabric: </b>
+              {card.fabric}
+            </p>
+            <p className={styles.title}>
+              <b>Sizes: </b>
+              {sizes.map((size) => (
+                <p>{size}</p>
+              ))}
+            </p>
+
+            <h4 className={styles.title}>
+              Measures:
               <table class="styled-table">
-              <thead>
+                <thead>
                   <tr>
-                      <th>Name</th>
-                      <th>Type</th>
+                    <th>Name</th>
+                    <th>Type</th>
                   </tr>
-              </thead>
-              <tbody>
-              {measures.map((measure)=>(
-                  <tr>
+                </thead>
+                <tbody>
+                  {measures.map((measure) => (
+                    <tr>
                       <td className={styles.table}>{measure.name}</td>
                       <td className={styles.table}>{measure.type}</td>
-                  </tr>
+                    </tr>
                   ))}
-              </tbody>
-          </table>
-        
+                </tbody>
+              </table>
             </h4>
             <p className={styles.title}>
               <b className={styles.title}>Description: </b>

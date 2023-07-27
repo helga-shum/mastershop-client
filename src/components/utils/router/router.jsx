@@ -13,7 +13,6 @@ import AuthProvider, { useAuth } from "../hooks/useAuth";
 import PrivateRoute from "./privateRoute";
 import FavoritesProvider from "../hooks/useFavorites";
 
-
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
@@ -24,63 +23,61 @@ import { loadOrdersList } from "../../store/orders";
 import { loadFavoritesList } from "../../store/favorites";
 
 const Router = () => {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadCardsList());
 
     dispatch(loadBasketList());
-    dispatch(loadOrdersList())
-    dispatch(loadFavoritesList())
+    dispatch(loadOrdersList());
+    dispatch(loadFavoritesList());
   }, []);
 
   return (
     <BrowserRouter>
       <AuthProvider>
         <Header />
-        <ScrollToTop />    
-            <FavoritesProvider>
-              <Routes>
-                <Route element={<Home />} path={"/"} />
-                <Route element={<Page404 />} path={"*"} />
-                <Route element={<CardPage />} path={"/cards/:id"} />
-                <Route
-                  path="/user"
-                  element={
-                    <PrivateRoute>
-                      <UserPage />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/basket"
-                  element={
-                    <PrivateRoute>
-                      <Basket />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/favorites"
-                  element={
-                    <PrivateRoute>
-                      <Favorites />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/admin"
-                  element={
-                    <PrivateRoute>
-                      <Admin />
-                    </PrivateRoute>
-                  }
-                />
-              </Routes>
-            </FavoritesProvider>
-         
-     
+        <ScrollToTop />
+        <FavoritesProvider>
+          <Routes>
+            <Route element={<Home />} path={"/"} />
+            <Route element={<Page404 />} path={"*"} />
+            <Route element={<CardPage />} path={"/cards/:id"} />
+            <Route
+              path="/user"
+              element={
+                <PrivateRoute>
+                  <UserPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/basket"
+              element={
+                <PrivateRoute>
+                  <Basket />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/favorites"
+              element={
+                <PrivateRoute>
+                  <Favorites />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <PrivateRoute>
+                  <Admin />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </FavoritesProvider>
+
         <Footer />
       </AuthProvider>
     </BrowserRouter>

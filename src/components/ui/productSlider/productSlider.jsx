@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styles from "./productSlider.module.css";
 import Line from "../line";
-import Button from "../button";
 import Slider from "../slider";
 import Loading from "../loading";
-import { Link } from "react-router-dom";
 import ProductSliderService from "../../services/ProductSliderService";
 
 const ProductSlider = () => {

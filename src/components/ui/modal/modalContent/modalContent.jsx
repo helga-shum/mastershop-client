@@ -13,10 +13,9 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteCard } from "../../../store/cards";
 
-
 export const SuccessModalContent = () => {
   const navigate = useNavigate();
- 
+
   return (
     <>
       <h2 className={styles.heading}>Congratulations!</h2>
@@ -78,7 +77,7 @@ export const OrderModalContent = ({ orderData, onConfirm }) => {
         <b className={styles.warning}>ATTENTION! Payment upon receipt!</b>
       </p>
       <Button appearance="ctvBlue" onClick={onConfirm}>
-      Confirm
+        Confirm
       </Button>
     </>
   );
@@ -93,7 +92,9 @@ export const LogOutModalContent = ({ onClose }) => {
   return (
     <>
       <h2 className={styles.heading}>Logout</h2>
-      <p className={styles.message}>Are you sure you want to log out of your account?</p>
+      <p className={styles.message}>
+        Are you sure you want to log out of your account?
+      </p>
       <Button
         appearance="ctvBlue"
         onClick={() => {
@@ -122,7 +123,6 @@ export const AuthModalContent = ({ variety, onClose }) => {
       <LoginForm onClose={onClose} />
       <p className={styles.warning}>
         <b>ATTENTION!</b> Please enter your details correctly.
- 
       </p>
       <button
         className={styles.btnContainer}
@@ -136,8 +136,7 @@ export const AuthModalContent = ({ variety, onClose }) => {
       <h2 className={styles.heading}>Register on the site</h2>
       <RegisterForm onClose={onClose} />
       <p className={styles.warning}>
-      <b>ATTENTION!</b> Please enter your details correctly.
-
+        <b>ATTENTION!</b> Please enter your details correctly.
       </p>
       <button
         className={styles.btnContainer}
@@ -154,12 +153,11 @@ AuthModalContent.propTypes = {
 };
 
 export const EditCardContent = ({ editData }) => {
-
   const { cardId, onClose, slides } = editData;
   return (
     <>
       <h2 className={styles.heading}>Card editing</h2>
-      <CardEditForm cardId={cardId} onClose={onClose} slides={slides}/>
+      <CardEditForm cardId={cardId} onClose={onClose} slides={slides} />
       <p className={styles.warning}>
         <b>ATTENTION!</b> Please enter your details correctly.
       </p>
@@ -169,8 +167,6 @@ export const EditCardContent = ({ editData }) => {
 EditCardContent.propTypes = {
   editData: PropTypes.object,
 };
-
-
 
 export const EditUserContent = ({ onClose }) => {
   return (
@@ -192,7 +188,7 @@ export const InDelivery = ({ onClose, onHandleDelivered }) => {
     <>
       <h2 className={styles.heading}>Delivery</h2>
       <h3 className={styles.heading}>
-      Your items are on delivery.
+        Your items are on delivery.
         <br /> Do you want to confirm receipt?
       </h3>
       <Button
@@ -225,9 +221,7 @@ export const DeletionCardConfirm = ({ deleteData }) => {
       <Button
         appearance="ctvBlue"
         onClick={() => {
-          dispatch(deleteCard(cardId)),
-           
-                      onClose();
+          dispatch(deleteCard(cardId)), onClose();
         }}
       >
         Delete
@@ -238,5 +232,3 @@ export const DeletionCardConfirm = ({ deleteData }) => {
 DeletionCardConfirm.propTypes = {
   deleteData: PropTypes.object,
 };
-
-

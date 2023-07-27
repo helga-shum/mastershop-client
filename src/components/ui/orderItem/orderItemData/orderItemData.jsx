@@ -4,15 +4,11 @@ import styles from "./orderItemData.module.css";
 import PropTypes from "prop-types";
 
 const OrderItemData = ({ card }) => {
-
-
- 
- const totalPrice = card.quantity*card.price
+  const totalPrice = card.quantity * card.price;
 
   return (
     <div className={styles.data}>
       <div>
-       
         <div className={styles.price}>
           <h3 className={styles.count}>{`Quantity: ${card.quantity} p.`}</h3>
         </div>

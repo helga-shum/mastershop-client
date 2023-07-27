@@ -1,29 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { brands, fabrics, sizes, sort } from '../utils/data';
-
-
-
-
+import { createSlice } from "@reduxjs/toolkit";
+import { brands, fabrics, sizes, sort } from "../utils/data";
 
 const initialState = {
-
-  searchValue: '',
+  searchValue: "",
   categoryId: 0,
   currentPage: 0,
   sortType: sort[0].sort,
   sizeFilter: sizes,
   brandFilter: brands,
-  minPrice:0,
-  maxPrice:7500,
+  minPrice: 0,
+  maxPrice: 7500,
   fabricFilter: fabrics,
-
 };
 
 const filterSlice = createSlice({
-  name: 'filters',
+  name: "filters",
   initialState,
   reducers: {
-
     setCategoryId(state, action) {
       state.categoryId = action.payload;
     },
@@ -96,6 +89,5 @@ export const {
   minusFabricFilter,
   setSearchValue,
 } = actions;
-
 
 export default filterReducer;

@@ -34,7 +34,8 @@ const AuthProvider = ({ children }) => {
     email,
     address,
     password,
-    licence}) {
+    licence,
+  }) {
     try {
       const { data } = await httpAuth.post("signUp", {
         userName,
@@ -45,7 +46,7 @@ const AuthProvider = ({ children }) => {
         licence,
         returnSecureToken: true,
       });
-      
+
       localStorageService.setTokens(data);
       //await createUser({
       //  id: data.userId,
@@ -101,7 +102,6 @@ const AuthProvider = ({ children }) => {
     try {
       const { content } = await UserService.create(data);
       setUser(content);
-
     } catch (error) {
       errorCatcher(error);
     }
@@ -141,7 +141,6 @@ const AuthProvider = ({ children }) => {
   }
   useEffect(() => {
     if (error !== null) {
-
       setError(null);
     }
   }, [error]);

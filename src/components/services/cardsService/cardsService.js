@@ -1,4 +1,4 @@
-import qs from "qs";
+
 import httpService from "../httpService";
 const cardsEndpoint = "cards/";
 

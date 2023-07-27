@@ -2,7 +2,6 @@ import React from "react";
 import Line from "../line";
 import styles from "./footer.module.css";
 
-
 const Footer = () => {
   return (
     <footer className={styles.footer} id="footer">
@@ -14,10 +13,7 @@ const Footer = () => {
       </div>
       <div className={styles.icons}>
         <button>
-          <a
-            href="#"
-            target="_blank"
-          >
+          <a href="#" target="_blank">
             <img src="/icons/socialIcons/discord.svg" alt="discord" />
           </a>
         </button>

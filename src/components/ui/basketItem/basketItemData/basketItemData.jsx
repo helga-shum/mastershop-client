@@ -6,21 +6,17 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { addBasketItem, minusBasketItem } from "../../../store/basket";
 
-
 const BasketItemData = ({ card }) => {
-
-
-  const totalPrice = card.price * card.quantity
+  const totalPrice = card.price * card.quantity;
 
   const deliveryDdate = calculateDeliveryDate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const onClickPlus = () => {
     dispatch(addBasketItem(card._id));
   };
   const onClickMinus = () => {
     dispatch(minusBasketItem(card._id));
   };
-  
 
   return (
     <div>
@@ -35,7 +31,10 @@ const BasketItemData = ({ card }) => {
               alt="plus"
             />
           </button>
-          <button onClick={onClickMinus} disabled={card.quantity==1 ? true : false} >
+          <button
+            onClick={onClickMinus}
+            disabled={card.quantity == 1 ? true : false}
+          >
             <img src="/icons/actionIcons/minus.svg" alt="minus" />
           </button>
         </div>

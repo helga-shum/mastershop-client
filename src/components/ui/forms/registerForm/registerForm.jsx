@@ -41,7 +41,8 @@ const RegisterForm = ({ onClose }) => {
         message: "Phone is required",
       },
       isPhone: {
-        message: "Phone entered incorrectly. For example, (123)-456-7890, 123-456-7890, or 123456-7890.",
+        message:
+          "Phone entered incorrectly. For example, (123)-456-7890, 123-456-7890, or 123456-7890.",
       },
     },
     email: {
@@ -65,8 +66,7 @@ const RegisterForm = ({ onClose }) => {
         message: "Password is required",
       },
       isCapitalSymbol: {
-        message:
-          "The password must contain at least one latin capital letter",
+        message: "The password must contain at least one latin capital letter",
       },
       isContainDigit: {
         message: "Password must contain at least one number",
@@ -95,7 +95,6 @@ const RegisterForm = ({ onClose }) => {
   };
 
   const isValid = Object.keys(errors).length === 0;
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -166,7 +165,7 @@ const RegisterForm = ({ onClose }) => {
       </CheckBoxField>
       <div>
         <Button appearance="ctvBlueSubmit" type="submit" disabled={isValid}>
-        Confirm
+          Confirm
         </Button>
       </div>
     </form>

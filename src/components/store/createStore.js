@@ -8,10 +8,10 @@ import filterReducer from "./filter";
 
 const rootReducer = combineReducers({
   cards: cardsReducer,
-  basket:basketReducer,
+  basket: basketReducer,
   orders: ordersReducer,
   favorites: favoritesReducer,
-  filters: filterReducer
+  filters: filterReducer,
 });
 
 export function createStore() {

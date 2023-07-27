@@ -41,8 +41,7 @@ const LoginForm = ({ onClose }) => {
         message: "Password is required",
       },
       isCapitalSymbol: {
-        message:
-          "The password must contain at least one latin capital letter",
+        message: "The password must contain at least one latin capital letter",
       },
       isContainDigit: {
         message: "Password must contain at least one number",
@@ -70,7 +69,7 @@ const LoginForm = ({ onClose }) => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
-   
+
     try {
       await logIn(data);
       onClose();
@@ -102,12 +101,12 @@ const LoginForm = ({ onClose }) => {
         autoComplete="current-password"
       />
       <CheckBoxField value={data.stayOn} onChange={handleChange} name="stayOn">
-      Remain in the system
+        Remain in the system
       </CheckBoxField>
       {enterError && <p className={styles.errorMessage}>{enterError}</p>}
       <div>
         <Button appearance="ctvBlueSubmit" type="submit" disabled={isValid}>
-        Confirm
+          Confirm
         </Button>
       </div>
     </form>

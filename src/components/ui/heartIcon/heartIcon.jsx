@@ -3,7 +3,6 @@ import styles from "./heartIcon.module.css";
 import PropTypes from "prop-types";
 
 const HeartIcon = ({ onClick, isActive, cardItem }) => {
-
   return (
     <button onClick={onClick} className={cardItem ? "" : styles.heartBtn}>
       <img

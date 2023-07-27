@@ -1,15 +1,12 @@
-import { createAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import FavoriteService from "../services/favoriteService.js";
-
-
 
 const favoriteSlice = createSlice({
   name: "favorites",
   initialState: {
-    entities:[],
+    entities: [],
     isLoading: true,
     error: null,
-    
   },
   reducers: {
     favoritesRequested: (state) => {
@@ -27,22 +24,23 @@ const favoriteSlice = createSlice({
       state.error = action.payload;
       state.isLoading = false;
     },
-//add or remove from favorites
+    //add or remove from favorites
     changeLikeStatus: (state, action) => {
-      const cardIndex = state.entities.findIndex((favCard) => favCard._id === action.payload._id);
+      const cardIndex = state.entities.findIndex(
+        (favCard) => favCard._id === action.payload._id
+      );
       if (cardIndex === -1) {
-        return void{
-          ...state, 
-          entities: [state.entities.push(action.payload)]
-        }
+        return void {
+          ...state,
+          entities: [state.entities.push(action.payload)],
+        };
       } else {
-        return void{...state, 
-          entities:[ state.entities.splice(cardIndex, 1)]
-        }
-       
+        return void {
+          ...state,
+          entities: [state.entities.splice(cardIndex, 1)],
+        };
       }
     },
-  
   },
 });
 const { reducer: favoritesReducer, actions } = favoriteSlice;
@@ -51,7 +49,7 @@ const {
   favoritesReceved,
   favoritesRequestFailed,
   favoritesRecevedEmpty,
-  changeLikeStatus
+  changeLikeStatus,
 } = actions;
 
 //get favorites
@@ -59,12 +57,11 @@ export const loadFavoritesList = () => async (dispatch) => {
   dispatch(favoritesRequested());
   try {
     const { content } = await FavoriteService.getAll();
-    if(content){
+    if (content) {
       dispatch(favoritesReceved(content));
-    }else{
+    } else {
       dispatch(favoritesRecevedEmpty());
     }
-    
   } catch (error) {
     dispatch(favoritesRequestFailed(error.message));
   }
@@ -72,12 +69,6 @@ export const loadFavoritesList = () => async (dispatch) => {
 //add or remove from favorites
 export const changeStatus = (item) => async (dispatch) => {
   dispatch(changeLikeStatus(item));
- 
 };
 
-
-
-
 export default favoritesReducer;
-
-

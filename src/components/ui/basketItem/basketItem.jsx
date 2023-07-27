@@ -10,13 +10,8 @@ import { removeBasketItem } from "../../store/basket";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../utils/hooks/useAuth";
 
-const BasketItem = ({
-  currentPath,
-  card
-}) => {
- 
- 
-  const dispatch = useDispatch()
+const BasketItem = ({ currentPath, card }) => {
+  const dispatch = useDispatch();
   const onClickRemove = () => {
     dispatch(removeBasketItem(card._id));
   };

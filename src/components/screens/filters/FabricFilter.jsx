@@ -1,8 +1,8 @@
-import React from 'react';
-import styles from "../filters/filters.module.css"
-import { useDispatch, useSelector } from 'react-redux';
-import { fabrics } from '../../utils/data';
-import { minusFabricFilter, setFabricFilter } from '../../store/filter';
+import React from "react";
+import styles from "../filters/filters.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fabrics } from "../../utils/data";
+import { minusFabricFilter, setFabricFilter } from "../../store/filter";
 const FabricFilter = () => {
   const dispatch = useDispatch();
   const { fabricFilter } = useSelector((state) => state.filters);
@@ -16,15 +16,16 @@ const FabricFilter = () => {
   };
   return (
     <div className={styles.container}>
-      <h4>
-        Fabric type
-      </h4>
-      <div
-        onClick={onClickChecked}
-        className={styles.item}>
+      <h4>Fabric type</h4>
+      <div onClick={onClickChecked} className={styles.item}>
         {fabrics.map((item, index) => (
           <div key={index}>
-            <input value={item} checked={fabricFilter.includes(item)} type="checkbox" onChange={onClickChecked} />
+            <input
+              value={item}
+              checked={fabricFilter.includes(item)}
+              type="checkbox"
+              onChange={onClickChecked}
+            />
             <span>{item}</span>
           </div>
         ))}

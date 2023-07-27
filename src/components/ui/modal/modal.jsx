@@ -11,12 +11,9 @@ import {
   EditUserContent,
   InDelivery,
   DeletionCardConfirm,
-
 } from "./modalContent";
 import { useDispatch } from "react-redux";
 import { createOrder } from "../../store/orders";
-
-
 
 const Modal = ({
   variety,
@@ -46,9 +43,7 @@ const Modal = ({
       <OrderModalContent
         orderData={orderData}
         onConfirm={() => {
-          setContent(<SuccessModalContent />),
-            dispatch(createOrder());
-            
+          setContent(<SuccessModalContent />), dispatch(createOrder());
         }}
       />
     ) : variety === "logOut" ? (
@@ -63,7 +58,7 @@ const Modal = ({
       <InDelivery onClose={onClose} onHandleDelivered={onHandleDelivered} />
     ) : variety === "deleteCard" ? (
       <DeletionCardConfirm deleteData={deleteData} />
-    ) :  null
+    ) : null
   );
 
   return (
