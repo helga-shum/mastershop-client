@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Line from "../line";
 import Slider from "../slider";
 import Loading from "../loading";
-import ProductSliderService from "../../services/ProductSliderService";
+import ProductSliderService from "../../services/productSliderService";
 
 const ProductSlider = () => {
   const [slides, setSlides] = useState([]);
